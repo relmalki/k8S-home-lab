@@ -17,7 +17,10 @@ scp \
   units/kube-scheduler.service \
   configs/kube-scheduler.yaml \
   configs/kube-apiserver-to-kubelet.yaml \
-  root@server:~/
+  ca-key.pem ca.pem \
+  kube-apiserver.pem kube-apiserver-key.pem \
+  service-accounts.pem service-accounts-key.pem \
+  encryption-config.yaml root@server:~/
 ```
 
 The commands in this lab must be run on the controller instance: `server`. Login to the controller instance using the `ssh` command. Example:
@@ -57,9 +60,9 @@ Install the Kubernetes binaries:
 {
   mkdir -p /var/lib/kubernetes/
 
-  mv ca.crt ca.key \
-    kube-api-server.key kube-api-server.crt \
-    service-accounts.key service-accounts.crt \
+  mv ca-key.pem ca.pem \
+    kube-apiserver.pem kube-apiserver-key.pem \
+    service-accounts.pem service-accounts-key.pem \
     encryption-config.yaml \
     /var/lib/kubernetes/
 }
@@ -160,7 +163,7 @@ At this point the Kubernetes control plane is up and running. Run the following 
 Make a HTTP request for the Kubernetes version info:
 
 ```bash
-curl -k --cacert ca.crt https://server.kubernetes.local:6443/version
+curl -k --cacert ca-key.pem https://server.kubernetes.local:6443/version
 ```
 
 ```text
