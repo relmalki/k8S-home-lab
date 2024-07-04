@@ -38,8 +38,7 @@ Extract and install the `etcd` server and the `etcdctl` command line utility:
 {
   mkdir -p /etc/etcd /var/lib/etcd
   chmod 700 /var/lib/etcd
-  cp ca.crt kube-api-server.key kube-api-server.crt \
-    /etc/etcd/
+  cp /var/lib/kubernetes/ca.pem /var/lib/kubernetes/kube-apiserver-key.pem /var/lib/kubernetes/kube-apiserver.pem /etc/etcd/
 }
 ```
 
