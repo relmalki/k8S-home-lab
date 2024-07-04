@@ -95,7 +95,7 @@ Install the worker binaries:
 ```bash
 {
   mkdir -p containerd
-  tar -xvf crictl-v1.28.0-linux-amd.tar.gz
+  tar -xvf crictl-v1.28.0-linux-amd64.tar.gz
   tar -xvf containerd-1.7.8-linux-amd64.tar.gz -C containerd
   tar -xvf cni-plugins-linux-amd64-v1.3.0.tgz -C /opt/cni/bin/
   mv runc.amd64 runc
