@@ -121,12 +121,5 @@ for host in node-0 node-1; do
     root@$host:/var/lib/kubelet/kubelet-key.pem
 done
 
-# Distribute the certificates to the server
-scp ca.pem root@server:/var/lib/kubernetes/ca.pem
-scp ca-key.pem root@server:/var/lib/kubernetes/ca-key.pem
-scp kube-apiserver.pem root@server:/var/lib/kubernetes/kube-apiserver.pem
-scp kube-apiserver-key.pem root@server:/var/lib/kubernetes/kube-apiserver-key.pem
-scp service-accounts.pem root@server:/var/lib/kubernetes/service-accounts.pem
-scp service-accounts-key.pem root@server:/var/lib/kubernetes/service-accounts-key.pem
 
-echo "Certificates distributed successfully."
+echo "Certificates and kubeconfig files distributed successfully."
