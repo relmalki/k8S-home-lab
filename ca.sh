@@ -85,8 +85,8 @@ generate_csr_json "admin" "admin" "" "system:masters"
 generate_csr_json "kube-apiserver" "kube-apiserver" "\"127.0.0.1\", \"192.168.50.11\", \"server.kubernetes.local\", \"kubernetes\", \"kubernetes.default\", \"kubernetes.default.svc\", \"kubernetes.default.svc.cluster\", \"kubernetes.svc.cluster.local\"" "Kubernetes"
 generate_csr_json "system:kube-controller-manager" "kube-controller-manager" "" "system:kube-controller-manager"
 generate_csr_json "system:kube-scheduler" "kube-scheduler" "" "system:kube-scheduler"
-generate_csr_json "system:node:node-0" "node-0" "\"192.168.50.12\", \"node-0.kubernetes.local\"" "system:nodes"
-generate_csr_json "system:node:node-1" "node-1" "\"192.168.50.13\", \"node-1.kubernetes.local\"" "system:nodes"
+generate_csr_json "system:node:node0" "node0" "\"192.168.50.12\", \"node0.kubernetes.local\"" "system:nodes"
+generate_csr_json "system:node:node1" "node1" "\"192.168.50.13\", \"node1.kubernetes.local\"" "system:nodes"
 generate_csr_json "system:kube-proxy" "kube-proxy" "" "system:node-proxier"
 generate_csr_json "service-accounts" "service-accounts" "" "Kubernetes"
 
@@ -101,15 +101,15 @@ generate_certificate "admin"
 generate_certificate "kube-apiserver"
 generate_certificate "kube-controller-manager"
 generate_certificate "kube-scheduler"
-generate_certificate "node-0"
-generate_certificate "node-1"
+generate_certificate "node0"
+generate_certificate "node1"
 generate_certificate "kube-proxy"
 generate_certificate "service-accounts"
 
 echo "Certificates generated successfully."
 
 # Distribute the certificates to nodes
-for host in node-0 node-1; do
+for host in node0 node1; do
   ssh root@$host mkdir -p /var/lib/kubelet/
   
   scp ca.pem root@$host:/var/lib/kubelet/
