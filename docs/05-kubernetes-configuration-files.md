@@ -24,7 +24,7 @@ for host in node-0 node-1; do
 
   kubectl config set-credentials system:node:${host} \
     --client-certificate=${host}.pem \
-    --client-key=${host}.key \
+    --client-key=${host}-key.pem \
     --embed-certs=true \
     --kubeconfig=${host}.kubeconfig
 
@@ -59,7 +59,7 @@ Generate a kubeconfig file for the `kube-proxy` service:
 
   kubectl config set-credentials system:kube-proxy \
     --client-certificate=kube-proxy.pem \
-    --client-key=kube-proxy.key \
+    --client-key=kube-proxy-key.pem \
     --embed-certs=true \
     --kubeconfig=kube-proxy.kubeconfig
 
@@ -93,7 +93,7 @@ Generate a kubeconfig file for the `kube-controller-manager` service:
 
   kubectl config set-credentials system:kube-controller-manager \
     --client-certificate=kube-controller-manager.pem \
-    --client-key=kube-controller-manager.key \
+    --client-key=kube-controller-manager-key.pem \
     --embed-certs=true \
     --kubeconfig=kube-controller-manager.kubeconfig
 
@@ -128,7 +128,7 @@ Generate a kubeconfig file for the `kube-scheduler` service:
 
   kubectl config set-credentials system:kube-scheduler \
     --client-certificate=kube-scheduler.pem \
-    --client-key=kube-scheduler.key \
+    --client-key=kube-scheduler-key.pem \
     --embed-certs=true \
     --kubeconfig=kube-scheduler.kubeconfig
 
@@ -162,7 +162,7 @@ Generate a kubeconfig file for the `admin` user:
 
   kubectl config set-credentials admin \
     --client-certificate=admin.pem \
-    --client-key=admin.key \
+    --client-key=admin-key.pem \
     --embed-certs=true \
     --kubeconfig=admin.kubeconfig
 
