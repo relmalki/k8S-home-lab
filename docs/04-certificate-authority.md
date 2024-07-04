@@ -89,10 +89,10 @@ for host in node0 node1; do
   scp ca.pem root@$host:/var/lib/kubelet/
     
   scp $host.pem \
-    root@$host:/var/lib/kubelet/kubelet.crt
+    root@$host:/var/lib/kubelet/kubelet.pem
     
   scp $host-key.pem \
-    root@$host:/var/lib/kubelet/kubelet.key
+    root@$host:/var/lib/kubelet/kubelet-key.pem
 done
 ```
 
