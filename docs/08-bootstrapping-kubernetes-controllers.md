@@ -6,6 +6,8 @@ In this lab you will bootstrap the Kubernetes control plane. The following compo
 
 Copy Kubernetes binaries and systemd unit files to the `server` instance:
 
+## Important modify the path of creds 
+
 ```bash
 scp \
   downloads/kube-apiserver \
