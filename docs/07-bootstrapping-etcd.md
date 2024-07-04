@@ -13,6 +13,13 @@ scp \
   root@server:~/
 ```
 
+```bash
+scp \
+ca.pem kube-apiserver-key.pem kube-apiserver.pem   \
+ root@server:~/
+```
+
+
 The commands in this lab must be run on the `server` machine. Login to the `server` machine using the `ssh` command. Example:
 
 ```bash
@@ -34,10 +41,15 @@ Extract and install the `etcd` server and the `etcdctl` command line utility:
 
 ### Configure the etcd Server
 
+
 ```bash
 {
   mkdir -p /etc/etcd /var/lib/etcd
   chmod 700 /var/lib/etcd
+  mkdir -p /var/lib/kubernetes
+  cp ca.pem /var/lib/kubernetes/ca.pem
+  cp kube-apiserver-key.pem /var/lib/kubernetes/kube-apiserver-key.pem
+  cp kube-apiserver.pem /var/lib/kubernetes/kube-apiserver.pem
   cp /var/lib/kubernetes/ca.pem /var/lib/kubernetes/kube-apiserver-key.pem /var/lib/kubernetes/kube-apiserver.pem /etc/etcd/
 }
 ```
