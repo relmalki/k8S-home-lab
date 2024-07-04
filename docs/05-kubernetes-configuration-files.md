@@ -17,13 +17,13 @@ Generate a kubeconfig file the node-0 worker node:
 ```bash
 for host in node-0 node-1; do
   kubectl config set-cluster kubernetes-the-hard-way \
-    --certificate-authority=ca.crt \
+    --certificate-authority=ca.pem \
     --embed-certs=true \
     --server=https://server.kubernetes.local:6443 \
     --kubeconfig=${host}.kubeconfig
 
   kubectl config set-credentials system:node:${host} \
-    --client-certificate=${host}.crt \
+    --client-certificate=${host}.pem \
     --client-key=${host}.key \
     --embed-certs=true \
     --kubeconfig=${host}.kubeconfig
@@ -52,13 +52,13 @@ Generate a kubeconfig file for the `kube-proxy` service:
 ```bash
 {
   kubectl config set-cluster kubernetes-the-hard-way \
-    --certificate-authority=ca.crt \
+    --certificate-authority=ca.pem \
     --embed-certs=true \
     --server=https://server.kubernetes.local:6443 \
     --kubeconfig=kube-proxy.kubeconfig
 
   kubectl config set-credentials system:kube-proxy \
-    --client-certificate=kube-proxy.crt \
+    --client-certificate=kube-proxy.pem \
     --client-key=kube-proxy.key \
     --embed-certs=true \
     --kubeconfig=kube-proxy.kubeconfig
@@ -86,13 +86,13 @@ Generate a kubeconfig file for the `kube-controller-manager` service:
 ```bash
 {
   kubectl config set-cluster kubernetes-the-hard-way \
-    --certificate-authority=ca.crt \
+    --certificate-authority=ca.pem \
     --embed-certs=true \
     --server=https://server.kubernetes.local:6443 \
     --kubeconfig=kube-controller-manager.kubeconfig
 
   kubectl config set-credentials system:kube-controller-manager \
-    --client-certificate=kube-controller-manager.crt \
+    --client-certificate=kube-controller-manager.pem \
     --client-key=kube-controller-manager.key \
     --embed-certs=true \
     --kubeconfig=kube-controller-manager.kubeconfig
@@ -121,13 +121,13 @@ Generate a kubeconfig file for the `kube-scheduler` service:
 ```bash
 {
   kubectl config set-cluster kubernetes-the-hard-way \
-    --certificate-authority=ca.crt \
+    --certificate-authority=ca.pem \
     --embed-certs=true \
     --server=https://server.kubernetes.local:6443 \
     --kubeconfig=kube-scheduler.kubeconfig
 
   kubectl config set-credentials system:kube-scheduler \
-    --client-certificate=kube-scheduler.crt \
+    --client-certificate=kube-scheduler.pem \
     --client-key=kube-scheduler.key \
     --embed-certs=true \
     --kubeconfig=kube-scheduler.kubeconfig
@@ -155,13 +155,13 @@ Generate a kubeconfig file for the `admin` user:
 ```bash
 {
   kubectl config set-cluster kubernetes-the-hard-way \
-    --certificate-authority=ca.crt \
+    --certificate-authority=ca.pem \
     --embed-certs=true \
     --server=https://127.0.0.1:6443 \
     --kubeconfig=admin.kubeconfig
 
   kubectl config set-credentials admin \
-    --client-certificate=admin.crt \
+    --client-certificate=admin.pem \
     --client-key=admin.key \
     --embed-certs=true \
     --kubeconfig=admin.kubeconfig
