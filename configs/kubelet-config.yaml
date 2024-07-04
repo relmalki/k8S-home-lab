@@ -6,7 +6,7 @@ authentication:
   webhook:
     enabled: true
   x509:
-    clientCAFile: "/var/lib/kubelet/ca.crt"
+    clientCAFile: "/var/lib/kubelet/ca.pem"
 authorization:
   mode: Webhook
 clusterDomain: "cluster.local"
@@ -17,5 +17,5 @@ containerRuntimeEndpoint: "unix:///var/run/containerd/containerd.sock"
 podCIDR: "SUBNET"
 resolvConf: "/etc/resolv.conf"
 runtimeRequestTimeout: "15m"
-tlsCertFile: "/var/lib/kubelet/kubelet.crt"
-tlsPrivateKeyFile: "/var/lib/kubelet/kubelet.key"
+tlsCertFile: "/var/lib/kubelet/kubelet.pem"
+tlsPrivateKeyFile: "/var/lib/kubelet/kubelet-key.pem"
