@@ -106,4 +106,27 @@ generate_certificate "node1"
 generate_certificate "kube-proxy"
 generate_certificate "service-accounts"
 
-echo "Certificates generated successfully."
+echo "Distribute kubelet certs"
+
+for host in node0 node1; do
+  ssh root@$host mkdir -p /var/lib/kubelet/
+  
+  scp ca.pem root@$host:/var/lib/kubelet/
+    
+  scp ${host}.pem \
+    root@$host:/var/lib/kubelet/kubelet.pem
+    
+  scp ${host}-key.pem \
+    root@$host:/var/lib/kubelet/kubelet-key.pem
+done
+
+echo "End Distributing kubelet certs with success"
+
+echo "Distribute server certs"
+scp \
+  ca-key.pem ca.pem \
+  kube-apiserver-key.pem kube-apiserver.pem \
+  service-accounts-key.pem service-accounts.pem \
+  root@server:~/
+
+echo "End Distributing server certs with success"
