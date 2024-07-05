@@ -207,4 +207,37 @@ scp admin.kubeconfig \
   root@server:~/
 ```
 
+```bash
+Add roles to api server to view logs and node metrics
+
+kubectl apply -f - <<EOF
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kube-apiserver-view-logs
+rules:
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get"]
+- apiGroups: [""]
+  resources: ["nodes/proxy"]
+  verbs: ["get"]
+EOF
+
+kubectl apply -f - <<EOF
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kube-apiserver-view-logs-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kube-apiserver-view-logs
+subjects:
+- kind: User
+  name: kube-apiserver
+  apiGroup: rbac.authorization.k8s.io
+EOF
+```
+
 Next: [Generating the Data Encryption Config and Key](06-data-encryption-keys.md)
